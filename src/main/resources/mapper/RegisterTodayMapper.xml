@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.huhehai.hospital.mapper.RegisterTodayMapper">
+    <!-- 插入一条今日挂号信息到 registertoday 表（假设存在此需求，类似其他挂号插入逻辑） -->
+    <insert id="addRegisterToday">
+        INSERT INTO registertoday (patient_Name, patient_phoneNumber, visitTime, doctor_name, doctor_department, outpatientType, registrationTime, medicalNumber)
+        VALUES (#{patient_Name}, #{patient_phoneNumber}, #{visitTime}, #{doctor_name}, #{doctor_department}, #{outpatientType}, #{registrationTime}, #{medicalNumber})
+    </insert>
+
+    <!-- 根据患者姓名查询今日挂号信息 -->
+    <select id="getRegisterTodayByPatientName" resultMap="RegisterTodayResultMap">
+        SELECT * FROM registertoday WHERE patient_Name = #{patient_Name}
+    </select>
+
+    <!-- 结果映射，将 registertoday 表字段与 RegisterToday 实体类属性对应 -->
+    <resultMap id="RegisterTodayResultMap" type="org.huhehai.hospital.entity.RegisterToday">
+        <id property="patient_Name" column="patient_Name" />
+        <result property="patient_phoneNumber" column="patient_phoneNumber" />
+        <result property="visitTime" column="visitTime" />
+        <result property="doctor_name" column="doctor_name" />
+        <result property="doctor_department" column="doctor_department" />
+        <result property="outpatientType" column="outpatientType" />
+        <result property="registrationTime" column="registrationTime" />
+        <result property="medicalNumber" column="medicalNumber" />
+    </resultMap>
+</mapper>
