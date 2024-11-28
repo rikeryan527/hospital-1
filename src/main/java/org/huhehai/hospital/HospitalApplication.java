@@ -5,6 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -16,6 +17,7 @@ import springfox.documentation.swagger.annotations.Annotations;
 @SpringBootApplication
 @MapperScan("org.huhehai.hospital.mapper")
 @EnableTransactionManagement
+@CrossOrigin(origins = "http://10.3.112.10:8080")
 public class HospitalApplication {
 
     public static void main(String[] args) {
