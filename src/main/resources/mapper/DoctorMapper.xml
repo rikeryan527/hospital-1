@@ -16,6 +16,22 @@
         SELECT * FROM doctors WHERE department = #{department}
     </select>
 
+    <!-- 根据科室、类型、就诊时间组合查询医生信息的 SQL 语句，动态构建查询条件 -->
+    <select id="getDoctorsByConditions" resultMap="DoctorResultMap">
+        SELECT * FROM doctors
+        <where>
+            <if test="department!= null">
+                AND department = #{department}
+            </if>
+            <if test="outpatientType!= null">
+                AND outpatientType = #{outpatientType}
+            </if>
+            <if test="visitTime!= null">
+                AND visitTime = #{visitTime}
+            </if>
+        </where>
+    </select>
+
     <!-- 结果映射，将 doctors 表字段与 Doctor 实体类属性对应 -->
     <resultMap id="DoctorResultMap" type="org.huhehai.hospital.entity.Doctor">
         <id property="name" column="name" />

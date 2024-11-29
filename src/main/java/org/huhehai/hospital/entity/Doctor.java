@@ -9,6 +9,15 @@ public class Doctor {
     private Integer totalNumber;
     private Integer remainingNumbers;
     private Date visitTime;
+    private Float cost;
+
+    public Float getCost() {
+        return cost;
+    }
+
+    public void setCost(Float cost) {
+        this.cost = cost;
+    }
 
     // 生成Getter和Setter方法
     public String getName() {

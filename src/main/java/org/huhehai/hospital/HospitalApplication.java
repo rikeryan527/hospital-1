@@ -17,7 +17,6 @@ import springfox.documentation.swagger.annotations.Annotations;
 @SpringBootApplication
 @MapperScan("org.huhehai.hospital.mapper")
 @EnableTransactionManagement
-@CrossOrigin(origins = "http://10.3.112.10:8080")
 public class HospitalApplication {
 
     public static void main(String[] args) {

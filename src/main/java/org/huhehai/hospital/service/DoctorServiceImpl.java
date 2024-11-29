@@ -27,4 +27,9 @@ public class DoctorServiceImpl implements DoctorService {
     public List<Doctor> getDoctorsByDepartment(String department) {
         return doctorMapper.getDoctorsByDepartment(department);
     }
+
+    @Override
+    public List<Doctor> getDoctorsByConditions(String department, String outpatientType, String visitTime) {
+        return doctorMapper.getDoctorsByConditions(department, outpatientType, visitTime);
+    }
 }

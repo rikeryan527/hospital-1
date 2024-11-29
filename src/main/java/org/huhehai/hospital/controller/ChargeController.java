@@ -16,15 +16,11 @@ public class ChargeController {
     @Autowired
     private ChargeService chargeService;
 
-    public ChargeController(ChargeService chargeService) {
-        this.chargeService = chargeService;
-    }
-
     // 根据医生姓名获取挂号费用信息
     @GetMapping("/doctor/{doctorName}")
-    public ResponseEntity<Charge> getChargeByName(@PathVariable String name) {
+    public ResponseEntity<Charge> getChargeByName(@PathVariable String doctorName) {
         try {
-            Charge charge = chargeService.getChargeByDoctorName(name);
+            Charge charge = chargeService.getChargeByDoctorName(doctorName);
             if (charge!= null) {
                 return new ResponseEntity<>(charge, HttpStatus.OK);
             } else {
@@ -34,10 +30,15 @@ public class ChargeController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
     // 获取所有挂号费用信息
     @GetMapping("")
     public ResponseEntity<List<Charge>> getAllCharges() {
-        List<Charge> charges = chargeService.getAllCharges();
-        return new ResponseEntity<>(charges, HttpStatus.OK);
+        try {
+            List<Charge> charges = chargeService.getAllCharges();
+            return new ResponseEntity<>(charges, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }
