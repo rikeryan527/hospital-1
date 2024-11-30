@@ -74,23 +74,18 @@ public class DoctorController {
         }
     }
 
-    // 新增根据科室、类型、就诊时间组合查询医生信息的接口（支持任意选择条件组合查询）
     @GetMapping("/query")
     public ResponseEntity<List<Doctor>> getDoctorsByConditions(
             @RequestParam(required = false) String department,
-            @RequestParam(required = false) String outpatientType,
-            @RequestParam(required = false) String visitTime) {
-        try {
-            List<Doctor> doctors = doctorService.getDoctorsByConditions(department, outpatientType, visitTime);
-            for (Doctor doctor : doctors) {
-                Charge charge = chargeService.getChargeByDoctorName(doctor.getName());
-                if (charge!= null) {
-                    doctor.setCost(charge.getCost());
-                }
+            @RequestParam(required = false) String outpatientType,  // 修改此处参数名
+            @RequestParam(required = false) String visitTime) {    // 修改此处参数名
+        List<Doctor> doctors = doctorService.getDoctorsByConditions(department, outpatientType, visitTime);
+        for (Doctor doc : doctors) {
+            Charge charge = chargeService.getChargeByDoctorName(doc.getName());
+            if (charge!= null) {
+                doc.setCost(charge.getCost());
             }
-            return new ResponseEntity<>(doctors, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+        return new ResponseEntity<>(doctors, HttpStatus.OK);
     }
 }
