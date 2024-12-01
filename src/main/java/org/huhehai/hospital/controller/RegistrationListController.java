@@ -23,6 +23,13 @@ public class RegistrationListController {
         return new ResponseEntity<>(registrationLists, HttpStatus.OK);
     }
 
+    // 根据账户名查询挂号预约信息的新接口
+    @GetMapping("/account/{accountName}")
+    public ResponseEntity<List<RegistrationList>> getRegistrationListByAccountName(@PathVariable String accountName) {
+        List<RegistrationList> registrationLists = registrationListService.getRegistrationListByAccountName(accountName);
+        return new ResponseEntity<>(registrationLists, HttpStatus.OK);
+    }
+
     // 新增挂号预约信息
     @PostMapping("")
     public ResponseEntity<Void> addRegistrationList(@RequestBody RegistrationList registrationList) {

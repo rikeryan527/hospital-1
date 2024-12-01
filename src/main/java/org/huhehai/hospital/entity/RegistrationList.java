@@ -12,7 +12,7 @@ public class RegistrationList {
 //    就诊时间
     private Date visitTime;
 //    医生姓名
-    private String doctor_Name;
+    private String doctor_name;
 //    科室
     private String department;
 //    门诊类型
@@ -24,6 +24,38 @@ public class RegistrationList {
     private String medicalNumber;
 //    挂号确认
     private Boolean reservationConfirmation;
+
+    private String accountName;
+
+    public RegistrationList(String name, String phoneNumber, Integer age, Date visitTime, String doctor_name, String department, String outpatientType, Date registrationTime, String medicalNumber, Boolean reservationConfirmation, String accountName) {
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.age = age;
+        this.visitTime = visitTime;
+        this.doctor_name = doctor_name;
+        this.department = department;
+        this.outpatientType = outpatientType;
+        this.registrationTime = registrationTime;
+        this.medicalNumber = medicalNumber;
+        this.reservationConfirmation = reservationConfirmation;
+        this.accountName = accountName;
+    }
+
+    public String getAccountName() {
+        return accountName;
+    }
+
+    public void setAccountName(String accountName) {
+        this.accountName = accountName;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 
     public String getName() {
         return name;
@@ -50,11 +82,11 @@ public class RegistrationList {
     }
 
     public String getDoctor_Name() {
-        return doctor_Name;
+        return doctor_name;
     }
 
     public void setDoctor_Name(String doctor_Name) {
-        this.doctor_Name = doctor_Name;
+        this.doctor_name = doctor_Name;
     }
 
     public String getDepartment() {

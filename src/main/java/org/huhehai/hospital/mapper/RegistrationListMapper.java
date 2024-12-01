@@ -8,4 +8,6 @@ import org.springframework.stereotype.Repository;
 public interface RegistrationListMapper {
     List<RegistrationList> getRegistrationListByUserName(String name);
     void addRegistrationList(RegistrationList registrationList);
+    // 根据账户名查询挂号预约信息的新方法
+    List<RegistrationList> getRegistrationListByAccountName(String accountName);
 }

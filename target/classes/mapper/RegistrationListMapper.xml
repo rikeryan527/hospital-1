@@ -3,10 +3,13 @@
 <mapper namespace="org.huhehai.hospital.mapper.RegistrationListMapper">
     <!-- 插入一条挂号预约信息到 registrationlist 表 -->
     <insert id="addRegistrationList">
-        INSERT INTO registrationlist (name, phoneNumber, age, visitTime, doctor_name, department, outpatientType, registrationTime, medicalTime, reservationConfirmation)
-        VALUES (#{name}, #{phoneNumber}, #{age}, #{visitTime}, #{doctor_name}, #{department}, #{outpatientType}, #{registrationTime}, #{medicalTime}, #{reservationConfirmation})
+        INSERT INTO registrationlist (name, phoneNumber, age, visitTime, doctor_name, department, outpatientType, registrationTime, medicalTime, reservationConfirmation, accountName)
+        VALUES (#{name}, #{phoneNumber}, #{age}, #{visitTime}, #{doctor_name}, #{department}, #{outpatientType}, #{registrationTime}, #{medicalNumber}, #{reservationConfirmation},{accountName})
     </insert>
-
+    <!-- 根据账户名查询挂号预约信息的新SQL语句 -->
+    <select id="getRegistrationListByAccountName" resultMap="RegistrationListResultMap">
+        SELECT * FROM registrationlist WHERE accountName = #{accountName}
+    </select>
     <!-- 根据用户名查询挂号预约信息 -->
     <select id="getRegistrationListByUserName" resultMap="RegistrationListResultMap">
         SELECT * FROM registrationlist WHERE name = #{name}
@@ -22,7 +25,8 @@
         <result property="department" column="department" />
         <result property="outpatientType" column="outpatientType" />
         <result property="registrationTime" column="registrationTime" />
-        <result property="medicalTime" column="medicalTime" />
+        <result property="medicalNumber" column="medicalNumber" />
         <result property="reservationConfirmation" column="reservationConfirmation" />
+        <result property="accountName" column="accountName"/>
     </resultMap>
 </mapper>

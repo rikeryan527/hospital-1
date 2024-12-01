@@ -13,9 +13,18 @@ public class RegistrationListServiceImpl implements RegistrationListService {
     @Autowired
     private RegistrationListMapper registrationListMapper;
 
+    public RegistrationListServiceImpl(RegistrationListMapper registrationListMapper) {
+        this.registrationListMapper = registrationListMapper;
+    }
+
     @Override
     public List<RegistrationList> getRegistrationListByUserName(String name) {
         return registrationListMapper.getRegistrationListByUserName(name);
+    }
+
+    @Override
+    public List<RegistrationList> getRegistrationListByAccountName(String accountName) {
+        return registrationListMapper.getRegistrationListByAccountName(accountName);
     }
 
     @Override
