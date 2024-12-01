@@ -31,7 +31,7 @@ public class RegistrationListController {
     }
 
     // 新增挂号预约信息
-    @PostMapping("")
+    @PostMapping("/addRegistration")
     public ResponseEntity<Void> addRegistrationList(@RequestBody RegistrationList registrationList) {
         registrationListService.addRegistrationList(registrationList);
         return new ResponseEntity<>(HttpStatus.CREATED);

@@ -3,8 +3,8 @@
 <mapper namespace="org.huhehai.hospital.mapper.RegistrationListMapper">
     <!-- 插入一条挂号预约信息到 registrationlist 表 -->
     <insert id="addRegistrationList">
-        INSERT INTO registrationlist (name, phoneNumber, age, visitTime, doctor_name, department, outpatientType, registrationTime, medicalTime, reservationConfirmation, accountName)
-        VALUES (#{name}, #{phoneNumber}, #{age}, #{visitTime}, #{doctor_name}, #{department}, #{outpatientType}, #{registrationTime}, #{medicalNumber}, #{reservationConfirmation},{accountName})
+        INSERT INTO registrationlist (name, phoneNumber, age, visitTime, doctor_name, department, outpatientType, registrationTime,medicalNumber, reservationConfirmation,accountName)
+        VALUES (#{name}, #{phoneNumber}, #{age}, #{visitTime}, #{doctor_name}, #{department}, #{outpatientType}, #{registrationTime}, 1, 1,#{accountName})
     </insert>
     <!-- 根据账户名查询挂号预约信息的新SQL语句 -->
     <select id="getRegistrationListByAccountName" resultMap="RegistrationListResultMap">
