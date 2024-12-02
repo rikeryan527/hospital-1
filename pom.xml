@@ -68,7 +68,7 @@
             <version>2.9.2</version>
         </dependency>
 
-        <!-- Spring Data JPA依赖（可选项，用于更方便地进行数据持久化操作，这里列出供参考，根据是否使用决定添加与否） -->
+        <!-- Spring Data JPA依赖（可选项，用于更方便地进行数据持久化操作 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -80,7 +80,14 @@
             <artifactId>jackson-datatype-jsr310</artifactId>
             <version>2.18.1</version>
         </dependency>
-
+        <!-- lombok注解处理器 -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.28</version>
+            <optional>true</optional>
+            <scope>provided</scope>
+        </dependency>
 
         <!-- 其他可能需要的依赖（根据项目实际功能需求添加，这里暂时未列出其他额外依赖） -->
     </dependencies>

@@ -1,5 +1,11 @@
 package org.huhehai.hospital.entity;
-
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+// 构造方法
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class User {
     private String accountName;
     private String passWord;
@@ -9,6 +15,16 @@ public class User {
     private String id;
     private Integer age;
     private String sex;
+
+    public String getVerificationCode() {
+        return verificationCode;
+    }
+
+    public void setVerificationCode(String verificationCode) {
+        this.verificationCode = verificationCode;
+    }
+
+    private String verificationCode;
 
     // 生成Getter和Setter方法
     public String getAccountName() {
@@ -73,5 +89,22 @@ public class User {
 
     public void setSex(String sex) {
         this.sex = sex;
+    }
+
+    // toString方法
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "accountName='" + accountName + '\'' +
+                ", passWord='" + passWord + '\'' +
+                ", creatTime='" + creatTime + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", name='" + name + '\'' +
+                ", id='" + id + '\'' +
+                ", age=" + age +
+                ", sex='" + sex + '\'' +
+                ", verificationCode='" + verificationCode + '\'' +
+                '}';
     }
 }
