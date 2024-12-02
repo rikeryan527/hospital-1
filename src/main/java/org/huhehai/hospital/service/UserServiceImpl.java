@@ -9,11 +9,10 @@ import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
-
     @Autowired
     private UserMapper userMapper;
 
-    // 根据用户名获取用户信息
+    // 根据用户名查询用户信息
     @Override
     public User getUserByName(String name) {
         return userMapper.getUserByName(name);
@@ -25,24 +24,28 @@ public class UserServiceImpl implements UserService {
         return userMapper.getAllUsers();
     }
 
-    // 添加用户信息
+    // 注册新用户（通过手机号等信息），调用 UserMapper 的注册方法
     @Override
-    public void addUser(User user) {
-        userMapper.addUser(user);
+    public void registerUser(User user) {
+        userMapper.registerUserByPhone(user);
     }
 
-    // 根据accountname删除用户信息
-    //@Override
-    public void deleteUser(String accountName) {
-        userMapper.deleteUserByAccountName(accountName);
+    // 用户通过账号名和密码登录（验证账号名和密码是否匹配），调用 UserMapper 的对应方法获取用户信息
+    @Override
+    public User loginByAccountNameAndPassword(String accountName, String passWord) {
+        return userMapper.getUserByAccountNameAndPassword(accountName, passWord);
     }
 
-    // 用户登录
+    // 用户通过手机号和密码登录（验证手机号和密码是否匹配），调用 UserMapper 的对应方法获取用户信息
     @Override
-    public User signIn(User user){
-        return userMapper.getUserByAccountNameAndPassword(user);
+    public User loginByPhoneNumberAndPassword(String phoneNumber, String passWord) {
+        return userMapper.getUserByPhoneNumberAndPassword(phoneNumber, passWord);
     }
-    // 用户注册
+
+    // 通过手机号重置密码，调用 UserMapper 的密码重置方法
     @Override
-    public User signUp(User user){ userMapper.addUser(user);  return userMapper.getUserByPhoneNumberAndPassword(user);}
+    public void resetPassword(String phoneNumber, String newPassWord) {
+        userMapper.resetPassword(phoneNumber, newPassWord);
+    }
+
 }

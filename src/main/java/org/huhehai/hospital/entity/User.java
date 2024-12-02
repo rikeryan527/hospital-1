@@ -1,11 +1,4 @@
 package org.huhehai.hospital.entity;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-// 构造方法
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class User {
     private String accountName;
     private String passWord;
@@ -15,18 +8,8 @@ public class User {
     private String id;
     private Integer age;
     private String sex;
-
-    public String getVerificationCode() {
-        return verificationCode;
-    }
-
-    public void setVerificationCode(String verificationCode) {
-        this.verificationCode = verificationCode;
-    }
-
     private String verificationCode;
 
-    // 生成Getter和Setter方法
     public String getAccountName() {
         return accountName;
     }
@@ -91,7 +74,13 @@ public class User {
         this.sex = sex;
     }
 
-    // toString方法
+    public String getVerificationCode() {
+        return verificationCode;
+    }
+
+    public void setVerificationCode(String verificationCode) {
+        this.verificationCode = verificationCode;
+    }
 
     @Override
     public String toString() {
@@ -106,5 +95,17 @@ public class User {
                 ", sex='" + sex + '\'' +
                 ", verificationCode='" + verificationCode + '\'' +
                 '}';
+    }
+
+    public User(String accountName, String passWord, String creatTime, String phoneNumber, String name, String id, Integer age, String sex, String verificationCode) {
+        this.accountName = accountName;
+        this.passWord = passWord;
+        this.creatTime = creatTime;
+        this.phoneNumber = phoneNumber;
+        this.name = name;
+        this.id = id;
+        this.age = age;
+        this.sex = sex;
+        this.verificationCode = verificationCode;
     }
 }

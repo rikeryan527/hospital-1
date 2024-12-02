@@ -11,45 +11,31 @@
         SELECT * FROM user
     </select>
 
-    <!-- 插入一条用户信息到 user 表 -->
-    <insert id="addUser">
-        INSERT INTO user (accountName, passWord, creatTime, phoneNumber, name, id, age, sex)
-        VALUES (#{accountName}, #{passWord}, #{creatTime}, #{phoneNumber}, #{name}, #{id}, #{age}, #{sex})
-    </insert>
-    <!-- 更新用户信息 -->
-    <update id="updateUser">
-        UPDATE user SET accountName = #{accountName}, passWord = #{passWord}, creatTime = #{creatTime}, phoneNumber = #{phoneNumber}, name = #{name}, id = #{id}, age = #{age}, sex = #{sex} WHERE name = #{name}
-    </update>
-    <!-- 删除用户信息 -->
-    <delete id="deleteUserByAccountName">
-        DELETE FROM user WHERE accountName = #{accountName}
-    </delete>
-    <!-- 根据手机号注册用户-->
-    <insert id="registerUserByPhone">
+    <!-- 插入一条用户信息到 user 表，用于注册功能 -->
+    <insert id="registerUserByPhone" keyProperty="id" useGeneratedKeys="true">
         INSERT INTO user (accountName, passWord, creatTime, phoneNumber, name, id, age, sex)
         VALUES (#{accountName}, #{passWord}, #{creatTime}, #{phoneNumber}, #{name}, #{id}, #{age}, #{sex})
     </insert>
 
-    <!-- 通过账号名获取用户密码-->
-    <select id="getPasswordByAccountName" resultType="string">
-        SELECT passWord FROM user WHERE accountName = #{name}
-    </select>
-
-    <!-- 能通过账号名和密码查询到账号则账号名和密码正确-->
-    <select id="getUserByAccountNameAndPassword" resultType="User">
+    <!-- 通过账号名和密码查询用户信息，用于登录验证（正确返回用户信息，否则返回 null） -->
+    <select id="getUserByAccountNameAndPassword" resultMap="UserResultMap">
         SELECT * FROM user WHERE accountName = #{accountName} AND passWord = #{passWord}
     </select>
 
-    <!-- 能通过手机号和密码查询到账号则手机号和密码正确-->
-    <select id="getUserByPhoneNumberAndPassword" resultType="User">
+    <!-- 通过手机号和密码查询用户信息，用于手机号登录验证（正确返回用户信息，否则返回 null） -->
+    <select id="getUserByPhoneNumberAndPassword" resultMap="UserResultMap">
         SELECT * FROM user WHERE phoneNumber = #{phoneNumber} AND passWord = #{passWord}
     </select>
 
-    <!-- 重置用户密码 -->
+    <!-- 根据账号名删除用户信息 -->
+    <delete id="deleteUserByAccountName">
+        DELETE FROM user WHERE accountName = #{accountName}
+    </delete>
+
+    <!-- 通过手机号重置用户密码 -->
     <update id="resetPassword">
         UPDATE user SET passWord = #{newPassword} WHERE phoneNumber = #{phoneNumber}
     </update>
-
 
     <!-- 结果映射，将 user 表字段与 User 实体类属性对应 -->
     <resultMap id="UserResultMap" type="org.huhehai.hospital.entity.User">
