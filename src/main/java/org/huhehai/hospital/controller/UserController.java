@@ -37,8 +37,13 @@ public class UserController {
     // 新增用户信息（注册功能，接收前端传来的用户信息对象进行注册）
     @PostMapping("")
     public ResponseEntity<Void> registerUser(@RequestBody User user) {
-        userService.registerUser(user);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        try {
+            userService.registerUser(user);
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     // 用户通过账号名和密码登录接口

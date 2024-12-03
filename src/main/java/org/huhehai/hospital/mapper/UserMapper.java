@@ -31,26 +31,4 @@ public interface UserMapper {
     // 通过手机号重置用户密码
     void resetPassword(String phoneNumber, String newPassWord);
 
-
-
-
-    //注册
-
-    //登录
-
-    //修改密码
- //通过手机验证码登录
-//       根据手机号注册用户
-
-    //找回密码+重置密码（通过手机验证码）
-
-    //修改个人信息
-        //修改密码
-        //修改头像
-        //修改手机号
-
-    //实名认证
-        //添加本人实名信息
-        //添加家庭成员
-
 }

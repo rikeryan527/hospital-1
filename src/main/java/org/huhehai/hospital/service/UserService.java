@@ -21,15 +21,4 @@ public interface UserService {
 
     // 通过手机号重置密码
     void resetPassword(String phoneNumber, String newPassWord);
-
-
-    /*
-    * 用户登录
-    * @param user 用户对象
-    * */
-//    登陆
-
-//    注册
-
-
 }

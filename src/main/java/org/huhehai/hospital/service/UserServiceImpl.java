@@ -24,9 +24,13 @@ public class UserServiceImpl implements UserService {
         return userMapper.getAllUsers();
     }
 
-    // 注册新用户（通过手机号等信息），调用 UserMapper 的注册方法
+    // 注册新用户（通过手机号等信息），添加生成accountName的逻辑后再调用 UserMapper的注册方法
     @Override
     public void registerUser(User user) {
+        // 基于固定规则结合手机号生成accountName，这里示例为添加前缀"acc_"，你可以根据实际需求调整规则
+        String generatedAccountName = "user_" + user.getPhoneNumber();
+        user.setAccountName(generatedAccountName);
+
         userMapper.registerUserByPhone(user);
     }
 
@@ -47,5 +51,4 @@ public class UserServiceImpl implements UserService {
     public void resetPassword(String phoneNumber, String newPassWord) {
         userMapper.resetPassword(phoneNumber, newPassWord);
     }
-
 }

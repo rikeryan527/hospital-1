@@ -11,20 +11,36 @@
         SELECT * FROM user
     </select>
 
-    <!-- 插入一条用户信息到 user 表，用于注册功能 -->
+    <!-- 插入一条用户信息到 user 表，用于注册功能，添加accountName字段到插入语句 -->
     <insert id="registerUserByPhone" keyProperty="id" useGeneratedKeys="true">
-        INSERT INTO user (accountName, passWord, creatTime, phoneNumber, name, id, age, sex)
-        VALUES (#{accountName}, #{passWord}, #{creatTime}, #{phoneNumber}, #{name}, #{id}, #{age}, #{sex})
+        INSERT INTO user (phoneNumber, passWord, creatTime, accountName)
+        VALUES (#{phoneNumber}, #{passWord}, now(), #{accountName})
     </insert>
 
     <!-- 通过账号名和密码查询用户信息，用于登录验证（正确返回用户信息，否则返回 null） -->
     <select id="getUserByAccountNameAndPassword" resultMap="UserResultMap">
-        SELECT * FROM user WHERE accountName = #{accountName} AND passWord = #{passWord}
+        SELECT * FROM user
+        <where>
+            <if test="accountName!= null and accountName!= ''">
+                AND accountName = #{accountName}
+            </if>
+            <if test="passWord!= null and passWord!= ''">
+                AND passWord = #{passWord}
+            </if>
+        </where>
     </select>
 
     <!-- 通过手机号和密码查询用户信息，用于手机号登录验证（正确返回用户信息，否则返回 null） -->
     <select id="getUserByPhoneNumberAndPassword" resultMap="UserResultMap">
-        SELECT * FROM user WHERE phoneNumber = #{phoneNumber} AND passWord = #{passWord}
+        SELECT * FROM user
+        <where>
+            <if test="phoneNumber!= null and phoneNumber!= ''">
+                AND phoneNumber = #{phoneNumber}
+            </if>
+            <if test="passWord!= null and passWord!= ''">
+                AND passWord = #{passWord}
+            </if>
+        </where>
     </select>
 
     <!-- 根据账号名删除用户信息 -->
@@ -39,12 +55,12 @@
 
     <!-- 结果映射，将 user 表字段与 User 实体类属性对应 -->
     <resultMap id="UserResultMap" type="org.huhehai.hospital.entity.User">
-        <id property="name" column="name" />
+        <id property="id" column="id" />
         <result property="accountName" column="accountName" />
         <result property="passWord" column="passWord" />
         <result property="creatTime" column="creatTime" />
         <result property="phoneNumber" column="phoneNumber" />
-        <result property="id" column="id" />
+        <result property="name" column="name" />
         <result property="age" column="age" />
         <result property="sex" column="sex" />
     </resultMap>
